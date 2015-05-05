@@ -1,25 +1,22 @@
-ActiveRecord::Schema.define(:version => 20150324000000) do
+# encoding: UTF-8
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
+#
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# you'll amass, the slower it'll run and the greater likelihood for issues).
+#
+# It's strongly recommended that you check this file into your version control system.
 
-  create_table "agents", :force => true do |t|
-    t.string   "first_name",                          :limit => 50
-    t.string   "last_name",                           :limit => 50
-    t.string   "address1"
-    t.string   "address2",                            :limit => 50
-    t.string   "city",                                :limit => 100
-    t.string   "state",                               :limit => 20
-    t.string   "zipcode",                             :limit => 10
-    t.string   "office_phone",                        :limit => 30
-    t.string   "cell_phone",                          :limit => 30
-    t.string   "fax",                                 :limit => 30
-    t.string   "title"
-    t.string   "website"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.datetime "last_login"
-    t.string   "license_number"
-  end
+ActiveRecord::Schema.define(version: 20150324000000) do
 
-  create_table "agent_contacts", :force => true do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "agent_contacts", force: true do |t|
     t.integer  "property_id"
     t.text     "comments"
     t.datetime "created_at"
@@ -28,15 +25,34 @@ ActiveRecord::Schema.define(:version => 20150324000000) do
     t.integer  "agent_id"
   end
 
-  create_table "deal_stages", :force => true do |t|
-    t.string  "name"
-    t.boolean "open",   :default => true
-    t.boolean "closed", :default => false
-    t.boolean "dead",   :default => false
+  create_table "agents", force: true do |t|
+    t.string   "first_name",     limit: 50
+    t.string   "last_name",      limit: 50
+    t.string   "address1"
+    t.string   "address2",       limit: 50
+    t.string   "city",           limit: 100
+    t.string   "state",          limit: 20
+    t.string   "zipcode",        limit: 10
+    t.string   "office_phone",   limit: 30
+    t.string   "cell_phone",     limit: 30
+    t.string   "fax",            limit: 30
+    t.string   "title"
+    t.string   "website"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "last_login"
+    t.string   "license_number"
   end
 
-  create_table "deals", :force => true do |t|
-    t.integer   "property_id"
+  create_table "deal_stages", force: true do |t|
+    t.string  "name"
+    t.boolean "open",   default: true
+    t.boolean "closed", default: false
+    t.boolean "dead",   default: false
+  end
+
+  create_table "deals", force: true do |t|
+    t.integer  "property_id"
     t.integer  "lead_id"
     t.integer  "agent_id"
     t.string   "name"
@@ -53,12 +69,12 @@ ActiveRecord::Schema.define(:version => 20150324000000) do
     t.integer  "price"
     t.integer  "deposit"
     t.integer  "total_commission"
-    t.decimal  "house_commission",    :precision => 10, :scale => 2
-    t.decimal  "agent_commission",    :precision => 10, :scale => 2
-    t.decimal  "cobroke_commission",  :precision => 10, :scale => 2
+    t.decimal  "house_commission",    precision: 10, scale: 2
+    t.decimal  "agent_commission",    precision: 10, scale: 2
+    t.decimal  "cobroke_commission",  precision: 10, scale: 2
   end
 
-  create_table "events", :force => true do |t|
+  create_table "events", force: true do |t|
     t.integer  "creator_id"
     t.integer  "assignee_id"
     t.integer  "lead_id"
@@ -71,22 +87,22 @@ ActiveRecord::Schema.define(:version => 20150324000000) do
     t.datetime "updated_at"
     t.integer  "deal_id"
     t.integer  "property_id"
-    t.boolean  "cancelled", :default => false, :null => false
+    t.boolean  "cancelled",   default: false, null: false
   end
 
-  create_table "lead_priorities", :force => true do |t|
-    t.string  "name"
+  create_table "lead_priorities", force: true do |t|
+    t.string "name"
   end
 
-  create_table "lead_statuses", :force => true do |t|
-    t.string  "name"
+  create_table "lead_statuses", force: true do |t|
+    t.string "name"
   end
 
-  create_table "lead_types", :force => true do |t|
-    t.string  "name"
+  create_table "lead_types", force: true do |t|
+    t.string "name"
   end
 
-  create_table "leads", :force => true do |t|
+  create_table "leads", force: true do |t|
     t.integer  "agent_id"
     t.integer  "lead_type_id"
     t.integer  "lead_status_id"
@@ -94,17 +110,17 @@ ActiveRecord::Schema.define(:version => 20150324000000) do
     t.text     "comments"
     t.datetime "next_followup"
     t.datetime "last_active"
-    t.string   "first_name",                       :limit => 50
-    t.string   "last_name",                        :limit => 50
+    t.string   "first_name",          limit: 50
+    t.string   "last_name",           limit: 50
     t.string   "email"
     t.string   "address"
-    t.string   "city",                             :limit => 20
-    t.string   "state",                            :limit => 3,  :default => ""
-    t.string   "zip_code",                         :limit => 10
+    t.string   "city",                limit: 20
+    t.string   "state",               limit: 3,  default: ""
+    t.string   "zip_code",            limit: 10
     t.string   "country_name"
-    t.string   "phone1",                           :limit => 21
-    t.string   "phone2",                           :limit => 21
-    t.string   "phone3",                           :limit => 21
+    t.string   "phone1",              limit: 21
+    t.string   "phone2",              limit: 21
+    t.string   "phone3",              limit: 21
     t.integer  "phone_type_1"
     t.integer  "phone_type_2"
     t.integer  "phone_type_3"
@@ -113,14 +129,14 @@ ActiveRecord::Schema.define(:version => 20150324000000) do
     t.string   "phone3_ext"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "bounced",                                        :default => false, :null => false
-    t.boolean  "mailing_list_signup",                            :default => false, :null => false
-    t.integer  "total_logic_score",                              :default => 1,     :null => false
-    t.integer  "recent_logic_score",                             :default => 0,     :null => false
+    t.boolean  "bounced",                        default: false, null: false
+    t.boolean  "mailing_list_signup",            default: false, null: false
+    t.integer  "total_logic_score",              default: 1,     null: false
+    t.integer  "recent_logic_score",             default: 0,     null: false
     t.datetime "unsubscribed_all_at"
   end
 
-  create_table "marketing_list_leads", :force => true do |t|
+  create_table "marketing_list_leads", force: true do |t|
     t.integer  "marketing_list_id"
     t.integer  "lead_id"
     t.datetime "unsubscribed_at"
@@ -129,7 +145,7 @@ ActiveRecord::Schema.define(:version => 20150324000000) do
     t.datetime "removed_at"
   end
 
-  create_table "marketing_lists", :force => true do |t|
+  create_table "marketing_lists", force: true do |t|
     t.integer  "agent_id"
     t.string   "name"
     t.text     "description"
@@ -137,17 +153,17 @@ ActiveRecord::Schema.define(:version => 20150324000000) do
     t.datetime "updated_at"
   end
 
-  create_table "phone_types", :force => true do |t|
-    t.string  "name"
+  create_table "phone_types", force: true do |t|
+    t.string "name"
   end
 
-  create_table "property_views", :force => true do |t|
+  create_table "property_views", force: true do |t|
     t.integer  "lead_id"
     t.integer  "property_id"
     t.datetime "created_at"
   end
 
-  create_table "showings", :force => true do |t|
+  create_table "showings", force: true do |t|
     t.integer  "property_id"
     t.text     "comments"
     t.datetime "showing_time"
@@ -157,15 +173,15 @@ ActiveRecord::Schema.define(:version => 20150324000000) do
     t.integer  "agent_id"
   end
 
-  create_table "task_priorities", :force => true do |t|
-    t.string  "name"
+  create_table "task_priorities", force: true do |t|
+    t.string "name"
   end
 
-  create_table "task_statuses", :force => true do |t|
-    t.string  "name"
+  create_table "task_statuses", force: true do |t|
+    t.string "name"
   end
 
-  create_table "tasks", :force => true do |t|
+  create_table "tasks", force: true do |t|
     t.integer  "creator_id"
     t.integer  "assignee_id"
     t.integer  "completer_id"

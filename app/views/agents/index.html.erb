@@ -1,0 +1,13 @@
+<div>
+  <h1>Agents</h1>
+  <ul>
+    <% @agents.each do |agent| %>
+      <li>
+        <%= link_to agent_path agent do %>
+          <%= agent.id %>:<%= agent.first_name %> <%= agent.last_name %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <%= link_to 'Create Agent', new_agent_path %>
+</div>

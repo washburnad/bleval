@@ -1,0 +1,13 @@
+<div>
+  <h1>Deals</h1>
+  <ul>
+    <% @deals.each do |deal| %>
+      <li>
+        <%= link_to deal_path deal do %>
+          <%= deal.id %>:<%= deal.agent.last_name %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <%= link_to 'Create Deal', new_deal_path %>
+</div>

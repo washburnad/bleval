@@ -1,0 +1,13 @@
+<div>
+  <h1>Create Task</h1>
+  <%= simple_form_for @task, url: tasks_path do |f| %>
+    <%= f.input :creator_id, as: :integer %>
+    <%= f.input :assignee_id, as: :integer %>
+    <%= f.input :completer_id, as: :integer %>
+    <%= f.input :lead_id, as: :integer %>
+    <%= f.input :deal_id, as: :integer %>
+    <%= f.input :task_priority_id, as: :integer %>
+    <%= f.input :task_status_id, as: :integer %>
+    <%= f.submit 'Create' %>
+  <% end %>
+</div>
