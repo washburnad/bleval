@@ -1,0 +1,10 @@
+<div>
+  <h1>Create Deal</h1>
+  <%= simple_form_for @deal, url: deals_path do |f| %>
+    <%= f.input :agent_id, as: :integer %>
+    <%= f.input :lead_id, as: :integer %>
+    <%= f.input :current_stage_id, as: :integer %>
+    <%= f.input :property_id, as: :integer %>
+    <%= f.submit 'Create' %>
+  <% end %>
+</div>

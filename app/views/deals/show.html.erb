@@ -1,0 +1,29 @@
+<div>
+  <h1>Deal</h1>
+  <ul>
+    <li>Agent ID:<%= @deal.agent.id %></li>
+    <li>Agent last name:<%= @deal.agent.last_name %></li>
+    <li>Deal state:<%= @deal.current_stage.name %></li>
+    <li>Lead ID:<%= @deal.lead_id %></li>
+    <li>Property ID:<%= @deal.property_id %></li>
+  </ul>
+  <%= link_to 'Update Deal', edit_deal_path(@deal) %>
+  <h2>Events</h2>
+  <ul>
+    <% @deal.events.each do |event| %>
+      <li>
+        Event ID: <%= event.id %><br />
+        Event cancelled?: <%= event.cancelled %>
+      </li>  
+    <% end %>
+  </ul>
+  <h2>Tasks</h2>
+  <ul>
+    <% @deal.tasks.each do |task| %>
+      <li>
+        Task ID: <%= task.id %><br />
+        Task stage: <%= task.task_status.name %>
+      </li>
+    <% end %>
+  </ul>
+</div>

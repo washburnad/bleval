@@ -1,4 +1,5 @@
 <div>
+  <h1>Create Task</h1>
   <%= simple_form_for @task, url: tasks_path do |f| %>
     <%= f.input :creator_id, as: :integer %>
     <%= f.input :assignee_id, as: :integer %>

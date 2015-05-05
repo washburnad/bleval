@@ -2,6 +2,8 @@ Bleval::Application.routes.draw do
   root 'static_pages#index'
   resources :tasks
   resources :events
+  resources :agents
+  resources :deals
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
