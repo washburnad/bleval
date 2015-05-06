@@ -1,11 +1,14 @@
 <div>
   <h1>Event</h1>
   <ul>
-    <li>Name:<%= @event.name %></li>
-    <li>Description:<%= @event.description %></li>
-    <li>Creator ID:<%= @event.creator_id %></li>
-    <li>Assignee ID:<%= @event.assignee_id %></li>
-    <li>Lead ID:<%= @event.lead_id %></li>
-    <li>Deal ID:<%= @event.deal_id %></li>
+    <li>Name: <%= @event.name %></li>
+    <li>Description: <%= @event.description %></li>
+    <li>Creator ID: <%= @event.creator_id %></li>
+    <li>Assignee ID: <%= @event.assignee_id %></li>
+    <li>Lead ID: <%= @event.lead_id %></li>
+    <li>Deal ID: <%= @event.deal_id %></li>
+    <li>Start: <%= @event.start_at %></li>
+    <li>End: <%= @event.end_at %></li>
   </ul>
+  <%= link_to 'Update Event', edit_event_path(@event) %>
 </div>

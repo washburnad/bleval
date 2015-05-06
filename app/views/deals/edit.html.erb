@@ -1,6 +1,6 @@
 <div>
   <h1>Edit Deal</h1>
-  <%= simple_form_for @deal, url: deal_path(@deal), method: :patch do |f| %>
+  <%= simple_form_for @deal, url: deal_path(@deal) do |f| %>
     <%= f.association :agent, label_method: :last_name %>
     <%= f.association :lead, label_method: :last_name %>
     <%= f.association :current_stage, label_method: :name %>

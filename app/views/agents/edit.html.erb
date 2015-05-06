@@ -1,7 +1,6 @@
 <div>
   <h1>Edit Agent</h1>
-  <%= simple_form_for @agent, url: agent_path(@agent), 
-    method: :patch do |f| %>
+  <%= simple_form_for @agent, url: agent_path(@agent) do |f| %>
     <%= f.input :first_name %>
     <%= f.input :last_name %>
     <%= f.input :autocancel_task_events_on_dead_deal, as: :radio_buttons %>

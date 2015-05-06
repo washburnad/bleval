@@ -1,0 +1,15 @@
+<div>
+  <h1>Update Task</h1>
+  <%= simple_form_for @task, url: task_path(@task) do |f| %>
+    <%= f.association :creator, label_method: :last_name%>
+    <%= f.association :assignee, label_method: :last_name %>
+    <%= f.association :completer, label_method: :last_name %>
+    <%= f.association :lead, label_method: :last_name %>
+    <%= f.association :deal, label_method: :id %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.association :task_priority, label_method: :name %>
+    <%= f.association :task_status, label_method: :name %>
+    <%= f.submit 'Update' %>
+  <% end %>
+</div>

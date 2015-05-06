@@ -1,0 +1,12 @@
+<div>
+  <h1>Edit Event</h1>
+  <%= simple_form_for @event, url: event_path(@event) do |f| %>
+    <%= f.association :creator, label_method: :last_name%>
+    <%= f.association :assignee, label_method: :last_name %>
+    <%= f.association :lead, label_method: :last_name %>
+    <%= f.association :deal, label_method: :id %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.submit 'Update' %>
+  <% end %>
+</div>

@@ -20,6 +20,20 @@ class EventsController < ApplicationController
     @event = Event.find params[:id]
   end
 
+  def edit
+    @event = Event.find params[:id]
+  end
+
+  def update
+    @event = Event.find params[:id]
+    @event.update_attributes event_params
+    if @event.valid?
+      redirect_to event_path @event 
+    else
+      render :new, :status => :unprocessable_entity
+    end
+  end
+
   private
 
   def event_params

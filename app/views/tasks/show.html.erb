@@ -3,12 +3,14 @@
   <ul>
     <li>Name: <%= @task.name %></li>
     <li>Description: <%= @task.description %></li>
-    <li>Creator ID:<%= @task.creator_id %></li>
-    <li>Assignee ID:<%= @task.assignee_id %></li>
-    <li>Completer ID:<%= @task.completer_id %></li>
-    <li>Lead ID:<%= @task.lead_id %></li>
-    <li>Deal ID:<%= @task.deal_id %></li>
-    <li>Priority:<%= @task.task_priority.name %></li>
-    <li>Status:<%= @task.task_status.name %></li>
+    <li>Creator ID: <%= @task.creator_id %></li>
+    <li>Assignee ID: <%= @task.assignee_id %></li>
+    <li>Completer ID: <%= @task.completer_id %></li>
+    <li>Lead ID: <%= @task.lead_id %></li>
+    <li>Deal ID: <%= @task.deal_id %></li>
+    <li>Priority: <%= @task.task_priority.name %></li>
+    <li>Status: <%= @task.task_status.name %></li>
+    <li>Due: <%= @task.due_date %></li>
   </ul>
+  <%= link_to 'Update Task', edit_task_path(@task) %>
 </div>

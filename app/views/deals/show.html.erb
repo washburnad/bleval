@@ -13,10 +13,7 @@
   <ul>
     <% @deal.events.each do |event| %>
       <li>
-        <%= link_to event_path(event) do %>
-          Event ID: <%= event.id %><br />
-          Event cancelled?: <%= event.cancelled %>
-        <% end %>
+        <%= link_to event_details(event), event_path(event) %>
       </li>  
     <% end %>
   </ul>
@@ -24,8 +21,8 @@
   <ul>
     <% @deal.tasks.each do |task| %>
       <li>
-        Task ID: <%= task.id %><br />
-        Task stage: <%= task.task_status.name %>
+        <%= link_to task_details(task),
+            task_path(task) %>
       </li>
     <% end %>
   </ul>
