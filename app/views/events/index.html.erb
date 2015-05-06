@@ -1,0 +1,16 @@
+<div>
+  <h1>Events</h1>
+  <ul>
+    <% @events.each do |event| %>
+      <li>
+        <%= link_to event_path event do %>
+          Creator ID:<%= event.creator_id %><br />
+          Assignee ID:<%= event.assignee_id %><br />
+          Lead ID:<%= event.lead_id %><br />
+          Deal ID:<%= event.deal_id %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <%= link_to 'Create Event', new_event_path %>
+</div>

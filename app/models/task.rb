@@ -8,4 +8,8 @@ class Task < ActiveRecord::Base
   belongs_to :task_status
   validates_presence_of :creator_id
   validates_presence_of :assignee_id
+
+  def priority
+    task_priority
+  end
 end

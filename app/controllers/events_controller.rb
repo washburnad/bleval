@@ -3,6 +3,10 @@ class EventsController < ApplicationController
     @event = Event.new
   end
 
+  def index
+    @events = Event.all
+  end
+
   def create
     @event = Event.create event_params
     if @event.valid?

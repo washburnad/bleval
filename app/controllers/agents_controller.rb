@@ -1,10 +1,20 @@
 class AgentsController < ApplicationController
   def index
-    @agents = Agent.all.to_a
+    @agents = Agent.all
   end
 
   def show
-    @agent = Agent.find params[:id]
+    @agent = Agent.includes(:assigned_events, 
+      :created_events,
+      :assigned_tasks,
+      :created_tasks,
+      :deals).find params[:id]
+    @events = @agent.agent_events
+    @deals = @agent.deals
+    @tasks = @agent.agent_tasks
+    @new_event = Event.new
+    @new_task = Task.new
+    @new_deal = Deal.new
   end
 
   def new

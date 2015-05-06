@@ -5,4 +5,73 @@
     <li>First name:<%= @agent.first_name %></li>
     <li>Last name:<%= @agent.last_name %></li>
   </ul>
+  <div>
+    <h2>Agent Events</h2>
+    <ul>
+      <% @events.each do |event| %>
+        <li>
+          <%= link_to event_details(event), event_path(event) %>
+        </li>
+      <% end %>
+    </ul>
+    <%= simple_form_for @new_event, url: events_path do |f| %>
+      
+      <%= f.input :creator_id, 
+        as: :hidden, 
+        input_html: { value: @agent.id } %>
+      <%= f.input :assignee_id, as: :integer %>
+      <%= f.input :lead_id, as: :integer %>
+      <%= f.input :deal_id, as: :integer %>
+      <%= f.submit 'Create New Event' %>
+    <% end %>
+  </div>
+  <div>
+    <h2>Agent Tasks</h2>
+    <ul>
+      <% @tasks.each do |task| %>
+        <li>
+          <%= link_to task_details(task),
+            task_path(task) %>
+        </li>
+      <% end %>
+    </ul>
+    <%= simple_form_for @new_task, url: tasks_path do |f| %>
+      <%= f.input :creator_id, 
+        as: :hidden,
+        input_html: { value: @agent.id } %>
+      <%= f.input :assignee_id, as: :integer %>
+      <%= f.input :completer_id, as: :integer %>
+      <%= f.input :lead_id, as: :integer %>
+      <%= f.input :deal_id, as: :integer %>
+      <%= f.input :task_priority_id, 
+        as: :integer,
+        input_html: { min: '1', max: '3' } %>
+      <%= f.input :task_status_id, 
+        as: :integer,
+        input_html: { min: '1', max: '6' } %>
+      <%= f.submit 'Create New Task' %>
+    <% end %>
+  </div>
+  <div>
+    <h2>Agent Deals</h2>
+    <ul>
+      <% @deals.each do |deal| %>
+        <li>
+          <%= link_to deal_details(deal),
+            deal_path(deal) %>
+        </li>
+      <% end %>
+    </ul>
+    <%= simple_form_for @new_deal, url: deals_path do |f| %>
+      <%= f.input :agent_id, 
+        as: :hidden,
+        input_html: { value: @agent.id } %>
+      <%= f.input :lead_id, as: :integer %>
+      <%= f.input :current_stage_id, 
+        as: :integer,
+        input_html: { min: '1', max: '5' } %>
+      <%= f.input :property_id, as: :integer %>
+      <%= f.submit 'Create' %>
+    <% end %>
+  </div>
 </div>

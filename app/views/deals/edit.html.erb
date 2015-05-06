@@ -3,7 +3,9 @@
   <%= simple_form_for @deal, url: deal_path(@deal), method: :patch do |f| %>
     <%= f.input :agent_id, as: :integer %>
     <%= f.input :lead_id, as: :integer %>
-    <%= f.input :current_stage_id, as: :integer %>
+    <%= f.input :current_stage_id, 
+      as: :integer,
+      input_html: { min: '1', max: '5' } %>
     <%= f.input :property_id, as: :integer %>
     <%= f.submit 'Update' %>
   <% end %>

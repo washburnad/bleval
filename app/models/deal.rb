@@ -15,7 +15,7 @@ class Deal < ActiveRecord::Base
   private
 
   def update_deal_connections
-    if current_stage.present? && current_stage_id == 5
+    if current_stage.present? && current_stage.dead
       Connections::cancel_tasks(tasks)
       Connections::cancel_events(events)
     end

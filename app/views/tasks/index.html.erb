@@ -1,0 +1,15 @@
+<div>
+  <h1>Task</h1>
+  <ul>
+    <% @tasks.each do |task| %>
+      <li>Creator ID:<%= task.creator_id %><br />
+      Assignee ID:<%= task.assignee_id %><br />
+      Completer ID:<%= task.completer_id %><<br />
+      Lead ID:<%= task.lead_id %><br />
+      Deal ID:<%= task.deal_id %><br />
+      Priority:<%= task.task_priority.name %><br />
+      Status:<%= task.task_status.name %><br />
+    <% end %>
+  </ul>
+  <%= link_to 'Create Task', new_task_path %>
+</div>

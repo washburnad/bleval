@@ -1,6 +1,6 @@
 class DealsController < ApplicationController
   def index
-    @deals = Deal.all.to_a
+    @deals = Deal.all
   end
 
   def new
