@@ -3,16 +3,10 @@
   <%= simple_form_for @lead, url: lead_path(@lead), method: :patch do |f| %>
     <%= f.input :first_name %>
     <%= f.input :last_name %>
-    <%= f.input :agent_id, as: :integer %>
-    <%= f.input :lead_type_id, 
-      as: :integer,
-      input_html: { min: '1', max: '9'} %>
-    <%= f.input :lead_status_id, 
-      as: :integer,
-      input_html: { min: '1', max: '7' } %>
-    <%= f.input :lead_priority_id,
-      as: :integer,
-      input_html: { min: '1', max: '5' } %>
+    <%= f.association :agent, label_method: :last_name %>
+    <%= f.association :lead_type, label_method: :name %>
+    <%= f.association :lead_status, label_method: :name %>
+    <%= f.association :lead_priority, label_method: :name %>
     <%= f.submit 'Update' %>
   <% end %>
 </div>

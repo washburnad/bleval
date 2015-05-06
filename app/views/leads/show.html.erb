@@ -12,15 +12,12 @@
 
   <h2>Contact Agent</h2>
   <ul>
-    <% @agents.each do |agent| %>
-      <li><%= agent.id %> - <%= agent.first_name %> <%= agent.last_name %></li>
-    <% end %>
     <%= simple_form_for @agent_contact,
       url: agent_contacts_path do |f| %>
       <%= f.input :lead_id,
         as: :hidden,
         input_html: { value: @lead.id } %>
-      <%= f.input :agent_id, as: :integer %>
+      <%= f.association :agent, label_method: :last_name %>
       <%= f.input :property_id %>
       <%= f.input :comments %>
       <%= f.submit 'Contact Agent' %>

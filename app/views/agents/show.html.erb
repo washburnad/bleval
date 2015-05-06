@@ -4,7 +4,11 @@
     <li>Agent ID:<%= @agent.id %></li>
     <li>First name:<%= @agent.first_name %></li>
     <li>Last name:<%= @agent.last_name %></li>
+    <li>Cancel tasks/events on deal closing: <%= @agent.autocancel_task_events_on_dead_deal %></li>
+    <li>Create follow up task on lead contact: <%= @agent.autocreate_lead_followup_task %></li>
+    <li>Create closing event on deal creation: <%= @agent.autoadd_closing_on_deal_creation %>
   </ul>
+  <%= link_to 'Update Agent', edit_agent_path(@agent) %>
   <div>
     <h2>Agent Events</h2>
     <ul>
@@ -15,13 +19,12 @@
       <% end %>
     </ul>
     <%= simple_form_for @new_event, url: events_path do |f| %>
-      
-      <%= f.input :creator_id, 
-        as: :hidden, 
-        input_html: { value: @agent.id } %>
-      <%= f.input :assignee_id, as: :integer %>
-      <%= f.input :lead_id, as: :integer %>
-      <%= f.input :deal_id, as: :integer %>
+      <%= f.association :creator, label_method: :last_name%>
+      <%= f.association :assignee, label_method: :last_name %>
+      <%= f.association :lead, label_method: :last_name %>
+      <%= f.association :deal, label_method: :id %>
+      <%= f.input :name %>
+      <%= f.input :description %>
       <%= f.submit 'Create New Event' %>
     <% end %>
   </div>
@@ -35,20 +38,16 @@
         </li>
       <% end %>
     </ul>
-    <%= simple_form_for @new_task, url: tasks_path do |f| %>
-      <%= f.input :creator_id, 
-        as: :hidden,
-        input_html: { value: @agent.id } %>
-      <%= f.input :assignee_id, as: :integer %>
-      <%= f.input :completer_id, as: :integer %>
-      <%= f.input :lead_id, as: :integer %>
-      <%= f.input :deal_id, as: :integer %>
-      <%= f.input :task_priority_id, 
-        as: :integer,
-        input_html: { min: '1', max: '3' } %>
-      <%= f.input :task_status_id, 
-        as: :integer,
-        input_html: { min: '1', max: '6' } %>
+      <%= simple_form_for @new_task, url: tasks_path do |f| %>
+      <%= f.association :creator, label_method: :last_name%>
+      <%= f.association :assignee, label_method: :last_name %>
+      <%= f.association :completer, label_method: :last_name %>
+      <%= f.association :lead, label_method: :last_name %>
+      <%= f.association :deal, label_method: :id %>
+      <%= f.input :name %>
+      <%= f.input :description %>
+      <%= f.association :task_priority, label_method: :name %>
+      <%= f.association :task_status, label_method: :name %>
       <%= f.submit 'Create New Task' %>
     <% end %>
   </div>
@@ -63,14 +62,11 @@
       <% end %>
     </ul>
     <%= simple_form_for @new_deal, url: deals_path do |f| %>
-      <%= f.input :agent_id, 
-        as: :hidden,
-        input_html: { value: @agent.id } %>
-      <%= f.input :lead_id, as: :integer %>
-      <%= f.input :current_stage_id, 
-        as: :integer,
-        input_html: { min: '1', max: '5' } %>
+      <%= f.association :agent, label_method: :last_name %>
+      <%= f.association :lead, label_method: :last_name %>
+      <%= f.association :current_stage, label_method: :name %>
       <%= f.input :property_id, as: :integer %>
+      <%= f.input :proj_closing_date, as: :date %>
       <%= f.submit 'Create New Deal' %>
     <% end %>
   </div>
@@ -87,18 +83,10 @@
     <%= simple_form_for @new_lead, url: leads_path do |f| %>
       <%= f.input :first_name %>
       <%= f.input :last_name %>
-      <%= f.input :agent_id, 
-        as: :hidden,
-        input_html: { value: @agent.id } %>
-      <%= f.input :lead_type_id, 
-        as: :integer,
-        input_html: { min: '1', max: '9'} %>
-      <%= f.input :lead_status_id, 
-        as: :integer,
-        input_html: { min: '1', max: '7' } %>
-      <%= f.input :lead_priority_id,
-        as: :integer,
-        input_html: { min: '1', max: '5' } %>
+      <%= f.association :agent, label_method: :last_name %>
+      <%= f.association :lead_type, label_method: :name %>
+      <%= f.association :lead_status, label_method: :name %>
+      <%= f.association :lead_priority, label_method: :name %>
       <%= f.submit 'Create New Lead' %>
     <% end %>
   </div>

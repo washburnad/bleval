@@ -1,17 +1,15 @@
 <div>
   <h1>Create Task</h1>
   <%= simple_form_for @task, url: tasks_path do |f| %>
-    <%= f.input :creator_id, as: :integer %>
-    <%= f.input :assignee_id, as: :integer %>
-    <%= f.input :completer_id, as: :integer %>
-    <%= f.input :lead_id, as: :integer %>
-    <%= f.input :deal_id, as: :integer %>
-    <%= f.input :task_priority_id, 
-      as: :integer,
-      input_html: { min: '1', max: '3' } %>
-    <%= f.input :task_status_id, 
-      as: :integer,
-      input_html: { min: '1', max: '6' } %>
+    <%= f.association :creator, label_method: :last_name%>
+    <%= f.association :assignee, label_method: :last_name %>
+    <%= f.association :completer, label_method: :last_name %>
+    <%= f.association :lead, label_method: :last_name %>
+    <%= f.association :deal, label_method: :id %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.association :task_priority, label_method: :name %>
+    <%= f.association :task_status, label_method: :name %>
     <%= f.submit 'Create' %>
   <% end %>
 </div>

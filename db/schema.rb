@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150324000000) do
+ActiveRecord::Schema.define(version: 20150506161914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,22 +26,25 @@ ActiveRecord::Schema.define(version: 20150324000000) do
   end
 
   create_table "agents", force: true do |t|
-    t.string   "first_name",     limit: 50
-    t.string   "last_name",      limit: 50
+    t.string   "first_name",                          limit: 50
+    t.string   "last_name",                           limit: 50
     t.string   "address1"
-    t.string   "address2",       limit: 50
-    t.string   "city",           limit: 100
-    t.string   "state",          limit: 20
-    t.string   "zipcode",        limit: 10
-    t.string   "office_phone",   limit: 30
-    t.string   "cell_phone",     limit: 30
-    t.string   "fax",            limit: 30
+    t.string   "address2",                            limit: 50
+    t.string   "city",                                limit: 100
+    t.string   "state",                               limit: 20
+    t.string   "zipcode",                             limit: 10
+    t.string   "office_phone",                        limit: 30
+    t.string   "cell_phone",                          limit: 30
+    t.string   "fax",                                 limit: 30
     t.string   "title"
     t.string   "website"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "last_login"
     t.string   "license_number"
+    t.boolean  "autocancel_task_events_on_dead_deal",             default: false
+    t.boolean  "autocreate_lead_followup_task",                   default: false
+    t.boolean  "autoadd_closing_on_deal_creation",                default: false
   end
 
   create_table "deal_stages", force: true do |t|

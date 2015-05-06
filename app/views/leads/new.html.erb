@@ -3,6 +3,10 @@
   <%= simple_form_for @agent, url: agents_path do |f| %>
     <%= f.input :first_name %>
     <%= f.input :last_name %>
+    <%= f.association :agent, label_method: :last_name %>
+    <%= f.association :lead_type, label_method: :name %>
+    <%= f.association :lead_status, label_method: :name %>
+    <%= f.association :lead_priority, label_method: :name %>
     <%= f.submit 'Create' %>
   <% end %>
 </div>

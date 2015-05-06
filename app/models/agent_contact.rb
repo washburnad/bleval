@@ -11,10 +11,12 @@ class AgentContact < ActiveRecord::Base
   private
 
   def assign_contact_task
-    Connections::create_agent_contact_task(
-      { creator: agent,
-        assignee: agent,
-        lead: lead,
-        description: comments })
+    if agent.autocreate_lead_followup_task
+      Connections::create_agent_contact_task(
+        { creator: agent,
+          assignee: agent,
+          lead: lead,
+          description: comments })
+    end
   end
 end

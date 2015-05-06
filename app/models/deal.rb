@@ -8,7 +8,7 @@ class Deal < ActiveRecord::Base
   validates_presence_of :agent_id
   validates_presence_of :property_id
 
-  after_save :deal_connections
+  after_save :update_deal_connections
   after_create :new_deal_connections
 
   include Connections
@@ -19,14 +19,18 @@ class Deal < ActiveRecord::Base
 
   private
 
-  def deal_connections
-    if current_stage.present? && current_stage.dead
-      Connections::cancel_tasks(tasks)
-      Connections::cancel_events(events)
+  def update_deal_connections
+    if (agent.autocancel_task_events_on_dead_deal &&
+        current_stage.present? && 
+        current_stage.dead)
+          Connections::cancel_tasks(tasks)
+          Connections::cancel_events(events)
     end
   end
 
   def new_deal_connections
-    Connections::create_closing_event({deal: self, assignee: agent, creator: agent})
+    if agent.autoadd_closing_on_deal_creation
+      Connections::create_closing_event({deal: self, assignee: agent, creator: agent})
+    end
   end
 end

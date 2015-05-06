@@ -27,6 +27,8 @@ class EventsController < ApplicationController
       permit(:creator_id, 
         :assignee_id, 
         :lead_id, 
-        :deal_id)
+        :deal_id,
+        :name,
+        :description)
   end
 end

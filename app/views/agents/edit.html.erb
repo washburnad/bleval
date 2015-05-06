@@ -1,11 +1,12 @@
 <div>
-  <h1>Create Agent</h1>
-  <%= simple_form_for @agent, url: agents_path do |f| %>
+  <h1>Edit Agent</h1>
+  <%= simple_form_for @agent, url: agent_path(@agent), 
+    method: :patch do |f| %>
     <%= f.input :first_name %>
     <%= f.input :last_name %>
     <%= f.input :autocancel_task_events_on_dead_deal, as: :radio_buttons %>
     <%= f.input :autocreate_lead_followup_task, as: :radio_buttons %>
     <%= f.input :autoadd_closing_on_deal_creation, as: :radio_buttons %>
-    <%= f.submit 'Create' %>
+    <%= f.submit 'Update' %>
   <% end %>
 </div>

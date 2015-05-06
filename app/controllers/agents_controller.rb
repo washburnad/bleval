@@ -33,6 +33,20 @@ class AgentsController < ApplicationController
     end
   end
 
+  def edit
+    @agent = Agent.find params[:id]
+  end
+
+  def update
+    @agent = Agent.find params[:id]
+    @agent.update_attributes agent_params
+    if @agent.valid?
+      redirect_to agent_path @agent
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def agent_params
@@ -40,6 +54,9 @@ class AgentsController < ApplicationController
       require(:agent).
         permit(
           :first_name,
-          :last_name)
+          :last_name,
+          :autocancel_task_events_on_dead_deal,
+          :autocreate_lead_followup_task,
+          :autoadd_closing_on_deal_creation)
   end
 end

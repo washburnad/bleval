@@ -1,10 +1,12 @@
 <div>
   <h1>Create Event</h1>
   <%= simple_form_for @event, url: events_path do |f| %>
-    <%= f.input :creator_id, as: :integer %>
-    <%= f.input :assignee_id, as: :integer %>
-    <%= f.input :lead_id, as: :integer %>
-    <%= f.input :deal_id, as: :integer %>
+    <%= f.association :creator, label_method: :last_name%>
+    <%= f.association :assignee, label_method: :last_name %>
+    <%= f.association :lead, label_method: :last_name %>
+    <%= f.association :deal, label_method: :id %>
+    <%= f.input :name %>
+    <%= f.input :description %>
     <%= f.submit 'Create' %>
   <% end %>
 </div>

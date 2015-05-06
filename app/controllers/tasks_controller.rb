@@ -30,6 +30,8 @@ class TasksController < ApplicationController
         :lead_id, 
         :deal_id, 
         :task_priority_id, 
-        :task_status_id)
+        :task_status_id,
+        :name,
+        :description)
   end
 end
