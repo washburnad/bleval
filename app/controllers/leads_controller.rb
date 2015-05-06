@@ -1,4 +1,8 @@
 class LeadsController < ApplicationController
+  def index
+    @leads = Lead.all.to_a
+  end 
+
   def create
     @lead = Lead.create lead_params
     if @lead.valid?
@@ -10,6 +14,8 @@ class LeadsController < ApplicationController
 
   def show
     @lead = Lead.find params[:id]
+    @agents = Agent.all.to_a
+    @agent_contact = AgentContact.new
   end
 
   def edit

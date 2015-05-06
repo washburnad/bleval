@@ -1,0 +1,13 @@
+<div>
+  <h1>Leads</h1>
+  <ul>
+    <% @leads.each do |lead| %>
+      <li>
+        <%= link_to lead_path(lead) do %>
+          ID: <%= lead.id %> - 
+          <%= lead.first_name %> <%= lead.last_name %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

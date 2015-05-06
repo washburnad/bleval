@@ -5,6 +5,7 @@ Bleval::Application.routes.draw do
   resources :agents
   resources :deals
   resources :leads
+  resources :agent_contacts
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

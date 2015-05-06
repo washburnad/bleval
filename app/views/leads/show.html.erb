@@ -1,5 +1,5 @@
 <div>
-  <h1>Lead</h1>
+  <h1>Leads</h1>
   <ul>
     <li>First Name: <%= @lead.first_name %></li>
     <li>Last Name: <%= @lead.last_name %></li>
@@ -9,4 +9,20 @@
     <li>Lead Priority: <%= @lead.priority %></li>
   </ul>
   <%= link_to 'Update Lead', edit_lead_path(@lead) %>
+
+  <h2>Contact Agent</h2>
+  <ul>
+    <% @agents.each do |agent| %>
+      <li><%= agent.id %> - <%= agent.first_name %> <%= agent.last_name %></li>
+    <% end %>
+    <%= simple_form_for @agent_contact,
+      url: agent_contacts_path do |f| %>
+      <%= f.input :lead_id,
+        as: :hidden,
+        input_html: { value: @lead.id } %>
+      <%= f.input :agent_id, as: :integer %>
+      <%= f.input :property_id %>
+      <%= f.input :comments %>
+      <%= f.submit 'Contact Agent' %>
+    <% end %>
 </div>
