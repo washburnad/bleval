@@ -3,17 +3,20 @@
   <ul>
     <li>Agent ID:<%= @deal.agent.id %></li>
     <li>Agent last name:<%= @deal.agent.last_name %></li>
-    <li>Deal state:<%= @deal.current_stage.name %></li>
+    <li>Deal stage:<%= @deal.stage %></li>
     <li>Lead ID:<%= @deal.lead_id %></li>
     <li>Property ID:<%= @deal.property_id %></li>
+    <li>Projected Closing Date:<%= @deal.proj_closing_date %>
   </ul>
   <%= link_to 'Update Deal', edit_deal_path(@deal) %>
   <h2>Events</h2>
   <ul>
     <% @deal.events.each do |event| %>
       <li>
-        Event ID: <%= event.id %><br />
-        Event cancelled?: <%= event.cancelled %>
+        <%= link_to event_path(event) do %>
+          Event ID: <%= event.id %><br />
+          Event cancelled?: <%= event.cancelled %>
+        <% end %>
       </li>  
     <% end %>
   </ul>

@@ -1,0 +1,12 @@
+<div>
+  <h1>Lead</h1>
+  <ul>
+    <li>First Name: <%= @lead.first_name %></li>
+    <li>Last Name: <%= @lead.last_name %></li>
+    <li>Agent ID: <%= @lead.agent_id %></li>
+    <li>Lead Type: <%= @lead.type %></li>
+    <li>Lead Status: <%= @lead.status %></li>
+    <li>Lead Priority: <%= @lead.priority %></li>
+  </ul>
+  <%= link_to 'Update Lead', edit_lead_path(@lead) %>
+</div>

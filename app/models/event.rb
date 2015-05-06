@@ -5,4 +5,8 @@ class Event < ActiveRecord::Base
   belongs_to :deal
   validates_presence_of :creator_id
   validates_presence_of :assignee_id
+
+  def self.create_event(event_params)
+    Event.create(event_params)
+  end
 end

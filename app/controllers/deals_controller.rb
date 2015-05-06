@@ -46,7 +46,8 @@ class DealsController < ApplicationController
         :lead_id,
         :agent_id,
         :current_stage_id,
-        :property_id)
+        :property_id,
+        :proj_closing_date)
   end
 
   def update_deal_connections

@@ -1,0 +1,8 @@
+<div>
+  <h1>Create Agent</h1>
+  <%= simple_form_for @agent, url: agents_path do |f| %>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.submit 'Create' %>
+  <% end %>
+</div>

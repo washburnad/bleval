@@ -13,4 +13,16 @@ class Lead < ActiveRecord::Base
   has_many :tasks
   has_many :marketing_list_leads
   has_many :marketing_lists, :through => :marketing_list_lead
+
+  def type
+    lead_type.name
+  end
+
+  def status
+    lead_status.name
+  end
+
+  def priority
+    lead_priority.name
+  end
 end

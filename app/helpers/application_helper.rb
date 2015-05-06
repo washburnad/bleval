@@ -16,4 +16,12 @@ module ApplicationHelper
     %Q( Deal ID: #{deal.id} -  
         Stage: #{deal.current_stage.name}) 
   end
+
+  def lead_details(lead)
+    %Q( Lead ID: #{lead.id} -  
+        #{lead.last_name} -
+        Type: #{lead.type} -
+        Status: #{lead.status} -
+        Priority: #{lead.priority} )
+  end
 end

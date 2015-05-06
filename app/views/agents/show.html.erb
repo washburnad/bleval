@@ -71,7 +71,35 @@
         as: :integer,
         input_html: { min: '1', max: '5' } %>
       <%= f.input :property_id, as: :integer %>
-      <%= f.submit 'Create' %>
+      <%= f.submit 'Create New Deal' %>
+    <% end %>
+  </div>
+  <div>
+    <h2>Agent Leads</h2>
+    <ul>
+      <% @leads.each do |lead| %>
+        <li>
+          <%= link_to lead_details(lead),
+            lead_path(lead) %>
+        </li>
+      <% end %>
+    </ul>
+    <%= simple_form_for @new_lead, url: leads_path do |f| %>
+      <%= f.input :first_name %>
+      <%= f.input :last_name %>
+      <%= f.input :agent_id, 
+        as: :hidden,
+        input_html: { value: @agent.id } %>
+      <%= f.input :lead_type_id, 
+        as: :integer,
+        input_html: { min: '1', max: '9'} %>
+      <%= f.input :lead_status_id, 
+        as: :integer,
+        input_html: { min: '1', max: '7' } %>
+      <%= f.input :lead_priority_id,
+        as: :integer,
+        input_html: { min: '1', max: '5' } %>
+      <%= f.submit 'Create New Lead' %>
     <% end %>
   </div>
 </div>
