@@ -14,7 +14,7 @@ class Deal < ActiveRecord::Base
   include Connections
 
   def stage
-    current_stage.name
+    current_stage.try(:name)
   end
 
   private

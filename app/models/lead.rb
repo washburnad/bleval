@@ -15,14 +15,14 @@ class Lead < ActiveRecord::Base
   has_many :marketing_lists, :through => :marketing_list_lead
 
   def type
-    lead_type.name
+    lead_type.try(:name)
   end
 
   def status
-    lead_status.name
+    lead_status.try(:name)
   end
 
   def priority
-    lead_priority.name
+    lead_priority.try(:name)
   end
 end
