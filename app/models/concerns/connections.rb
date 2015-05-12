@@ -47,5 +47,7 @@ module Connections
     Task.create_task(task_params)
   end
 
+  # creates a new task after deal created
+  # args requires :creator, :assignee, :lead, :description, :date
   
 end

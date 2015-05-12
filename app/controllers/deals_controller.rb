@@ -47,6 +47,7 @@ class DealsController < ApplicationController
         :agent_id,
         :current_stage_id,
         :property_id,
+        :ps_date,
         :proj_closing_date)
   end
 

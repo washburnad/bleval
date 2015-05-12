@@ -57,6 +57,7 @@ class AgentsController < ApplicationController
           :last_name,
           :autocancel_task_events_on_dead_deal,
           :autocreate_lead_followup_task,
-          :autoadd_closing_on_deal_creation)
+          :autoadd_closing_on_deal_creation,
+          :autocreate_ps_task)
   end
 end
