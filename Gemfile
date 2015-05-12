@@ -35,9 +35,13 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :development do
+  gem 'byebug'
+end
+
 group :test do
   # test factory
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
 end
 
 # Use ActiveModel has_secure_password

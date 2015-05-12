@@ -22,12 +22,26 @@ class ConnectionsTest < ActiveSupport::TestCase
     end
   end
 
-  test 'Should cancel all deal tasks and events' do
+  test 'Should not cancel all deal tasks and events' do
     setup
     @deal.current_stage_id = 5
     @deal.save
-    @deal_stages = DealStage.all.to_a    
+    
+    @deal.events.each do |event|
+      refute event.cancelled, 'Event should not be canceled'
+    end
 
+    @deal.tasks.each do |task|
+      refute task.task_status_id == 6, 'Task should not be canceled'
+    end
+  end
+
+  test 'Should cancel all deal tasks and events' do
+    setup
+    @agent.update_attributes(autocancel_task_events_on_dead_deal: true)
+    @deal.current_stage_id = 5
+    @deal.save
+    
     @deal.events.each do |event|
       assert event.cancelled, 'Event should be canceled'
     end
@@ -38,8 +52,12 @@ class ConnectionsTest < ActiveSupport::TestCase
   end
 
   def setup
-    @deal = Deal.create(lead_id: 1, agent_id: 1, property_id: 1, current_stage_id: 3)
-    @deal.reload
+    @agent = FactoryGirl.create(:agent)
+    @lead = FactoryGirl.create(:lead)
+    @deal = FactoryGirl.create(:deal, 
+      agent: @agent,
+      lead: @lead,
+      current_stage_id: 3)
     3.times do
       @deal.events.create(creator_id: 1, assignee_id: 2, cancelled: false)
     end

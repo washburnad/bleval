@@ -17,16 +17,16 @@ module Connections
   # creates a closing event
   # args requires :creator, :assignee and :deal
   def self.create_closing_event(args)
-    event_params = {}
-    event_params[:creator] = args[:creator]
-    event_params[:assignee] = args[:assignee]
-    event_params[:start_at] = args[:deal].proj_closing_date
-    event_params[:deal] = args[:deal]
-    event_params[:property_id] = args[:deal].property_id
-    event_params[:lead] = args[:deal].lead
-    event_params[:name] = 'Closing'
-    event_params[:description] = %Q(
-      Projected closing for property ##{args[:deal].property_id} )
+    event_params = args.
+      slice(
+        :creator, 
+        :assignee, 
+        :deal).
+      merge(
+        property_id: args[:deal].property_id,
+        lead: args[:deal].lead,
+        name: 'Closing',
+        description: %Q( Projected closing for property ##{args[:deal].property_id} ) )
     Event.create_event(event_params)
   end
 
