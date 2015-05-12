@@ -6,7 +6,8 @@
     <li>Last name:<%= @agent.last_name %></li>
     <li>Cancel tasks/events on dead deal: <%= @agent.autocancel_task_events_on_dead_deal %></li>
     <li>Create follow up task on lead contact: <%= @agent.autocreate_lead_followup_task %></li>
-    <li>Create closing event on deal creation: <%= @agent.autoadd_closing_on_deal_creation %>
+    <li>Create closing event on deal creation: <%= @agent.autoadd_closing_on_deal_creation %></li>
+    <li>Create purchase and sale task on deal creation: <%= @agent.autocreate_ps_task %></li>
   </ul>
   <%= link_to 'Update Agent', edit_agent_path(@agent) %>
   <div>
