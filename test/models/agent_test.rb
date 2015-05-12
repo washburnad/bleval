@@ -6,7 +6,7 @@ class AgentTest < ActiveSupport::TestCase
   # end
 
   test 'Should return all agent events' do
-    setup
+    setup_agent_info
 
     assert_equal 3, @agent.created_events.count, 'Should count all created events'
     assert_equal 2, @agent.assigned_events.count, 'Should count all assigned events'
@@ -14,14 +14,14 @@ class AgentTest < ActiveSupport::TestCase
   end
 
   test 'Should return all agent tasks' do
-    setup
+    setup_agent_info
     
     assert_equal 1, @agent.created_tasks.count, 'Should count all created events'
     assert_equal 5, @agent.assigned_tasks.count, 'Should count all assigned events'
     assert_equal 6, @agent.tasks.count, 'Should count all agent events'
   end
 
-  def setup
+  def setup_agent_info
     @agent = FactoryGirl.create(:agent)
     @lead = FactoryGirl.create(:lead)
     3.times do |n|

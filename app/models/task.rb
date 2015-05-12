@@ -14,7 +14,6 @@ class Task < ActiveRecord::Base
   end
 
   def self.create_task(task_params)
-    p task_params
     Task.create(task_params)
   end
 end

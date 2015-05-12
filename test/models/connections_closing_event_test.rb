@@ -5,7 +5,7 @@ class ConnectionsTest < ActiveSupport::TestCase
   #   assert true
   # end
   test 'Should create closing event' do
-    setup
+    setup_agent_lead
     @deal = FactoryGirl.create(:deal, 
       agent: @agent,
       lead: @lead,
@@ -23,7 +23,7 @@ class ConnectionsTest < ActiveSupport::TestCase
   end
 
   test 'Should create closing on deal creation' do
-    setup
+    setup_agent_lead
     @agent.update_attributes(autoadd_closing_on_deal_creation: true)
     @deal = FactoryGirl.create(:deal, 
       agent: @agent,
@@ -35,7 +35,7 @@ class ConnectionsTest < ActiveSupport::TestCase
   end
 
   test 'Should not create closing on deal creation' do
-    setup
+    setup_agent_lead
     @deal = FactoryGirl.create(:deal, 
       agent: @agent,
       lead: @lead,
@@ -45,7 +45,7 @@ class ConnectionsTest < ActiveSupport::TestCase
     refute_equal 'Closing', agent_events.last.try(:name)
   end
 
-  def setup
+  def setup_agent_lead
     @agent = FactoryGirl.create(:agent)
     @lead = FactoryGirl.create(:lead)
   end
