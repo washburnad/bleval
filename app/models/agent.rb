@@ -9,11 +9,11 @@ class Agent < ActiveRecord::Base
   has_many :created_tasks, :class_name => "Task", :foreign_key => :creator_id
   has_many :completed_tasks, :class_name => "Task", :foreign_key => :completer_id
 
-  def agent_events
-    assigned_events.push(created_events).uniq
+  def events
+    ( assigned_events.to_a + created_events.to_a ).uniq
   end
 
-  def agent_tasks
-    assigned_tasks.push(created_tasks).uniq
+  def tasks
+    ( assigned_tasks.to_a + created_tasks.to_a ).uniq
   end
 end
