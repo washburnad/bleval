@@ -10,9 +10,9 @@ class AgentsController < ApplicationController
       :created_tasks,
       :deals,
       :leads).find params[:id]
-    @events = @agent.agent_events
+    @events = @agent.events
     @deals = @agent.deals
-    @tasks = @agent.agent_tasks
+    @tasks = @agent.tasks
     @leads = @agent.leads
     @new_event = Event.new
     @new_task = Task.new

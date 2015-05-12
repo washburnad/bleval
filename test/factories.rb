@@ -14,4 +14,10 @@ FactoryGirl.define do
       n
     end
   end
+
+  factory :event do
+  end
+
+  factory :task do
+  end
 end

@@ -17,7 +17,7 @@ class ConnectionsTest < ActiveSupport::TestCase
 
     Connections::create_closing_event(@closing_args)
 
-    agent_events = @agent.agent_events
+    agent_events = @agent.events
 
     assert_equal 'Closing', agent_events.last.name
   end
@@ -29,7 +29,7 @@ class ConnectionsTest < ActiveSupport::TestCase
       agent: @agent,
       lead: @lead,
       current_stage_id: 3)
-    agent_events = @agent.agent_events
+    agent_events = @agent.events
 
     assert_equal 'Closing', agent_events.last.name
   end
@@ -40,7 +40,7 @@ class ConnectionsTest < ActiveSupport::TestCase
       agent: @agent,
       lead: @lead,
       current_stage_id: 3)
-    agent_events = @agent.agent_events
+    agent_events = @agent.events
 
     refute_equal 'Closing', agent_events.last.try(:name)
   end

@@ -29,6 +29,7 @@ class Deal < ActiveRecord::Base
   end
 
   def new_deal_connections
+    puts 'new deal connections'
     if agent.autoadd_closing_on_deal_creation
       Connections::create_closing_event({deal: self, assignee: agent, creator: agent})
     end
