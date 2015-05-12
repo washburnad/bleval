@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150506161914) do
+ActiveRecord::Schema.define(version: 20150512202353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20150506161914) do
     t.boolean  "autocancel_task_events_on_dead_deal",             default: false
     t.boolean  "autocreate_lead_followup_task",                   default: false
     t.boolean  "autoadd_closing_on_deal_creation",                default: false
+    t.boolean  "autocreate_ps_task",                              default: false
   end
 
   create_table "deal_stages", force: true do |t|

@@ -14,7 +14,7 @@ class Deal < ActiveRecord::Base
   include Connections
 
   def stage
-    current_stage.name
+    current_stage.try(:name)
   end
 
   private
@@ -30,7 +30,13 @@ class Deal < ActiveRecord::Base
 
   def new_deal_connections
     if agent.autoadd_closing_on_deal_creation
-      Connections::create_closing_event({deal: self, assignee: agent, creator: agent})
+      Connections::create_closing_event(
+        {deal: self, assignee: agent, creator: agent})
+    end
+
+    if agent.autocreate_ps_task
+      Connections::create_ps_signing_task(
+        {deal: self, assignee: agent, creator: agent, lead: lead})
     end
   end
 end

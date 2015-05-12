@@ -5,7 +5,8 @@
     <%= f.association :lead, label_method: :last_name %>
     <%= f.association :current_stage, label_method: :name %>
     <%= f.input :property_id, as: :integer %>
-    <%= f.input :proj_closing_date, as: :date %>
+    <%= f.input :proj_closing_date, as: :date, label: 'Projected closing date' %>
+    <%= f.input :ps_date, as: :date, label: 'Purchase & Sale date' %>
     <%= f.submit 'Update' %>
   <% end %>
 </div>

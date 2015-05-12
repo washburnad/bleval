@@ -4,9 +4,10 @@
     <li>Agent ID:<%= @agent.id %></li>
     <li>First name:<%= @agent.first_name %></li>
     <li>Last name:<%= @agent.last_name %></li>
-    <li>Cancel tasks/events on deal closing: <%= @agent.autocancel_task_events_on_dead_deal %></li>
+    <li>Cancel tasks/events on dead deal: <%= @agent.autocancel_task_events_on_dead_deal %></li>
     <li>Create follow up task on lead contact: <%= @agent.autocreate_lead_followup_task %></li>
-    <li>Create closing event on deal creation: <%= @agent.autoadd_closing_on_deal_creation %>
+    <li>Create closing event on deal creation: <%= @agent.autoadd_closing_on_deal_creation %></li>
+    <li>Create purchase and sale task on deal creation: <%= @agent.autocreate_ps_task %></li>
   </ul>
   <%= link_to 'Update Agent', edit_agent_path(@agent) %>
   <div>
@@ -64,10 +65,10 @@
     <%= simple_form_for @new_deal, url: deals_path do |f| %>
       <%= f.association :agent, label_method: :last_name %>
       <%= f.association :lead, label_method: :last_name %>
-      <%= f.association :current_stage, label_method: :name %>
       <%= f.input :property_id, as: :integer %>
-      <%= f.input :proj_closing_date, as: :date %>
-      <%= f.submit 'Create New Deal' %>
+      <%= f.association :current_stage, label_method: :name %>
+      <%= f.input :proj_closing_date, as: :date, label: 'Projected closing date' %>
+      <%= f.input :ps_date, as: :date, label: 'Purchase & Sale date' %>      <%= f.submit 'Create New Deal' %>
     <% end %>
   </div>
   <div>

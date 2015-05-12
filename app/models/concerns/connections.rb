@@ -47,5 +47,20 @@ module Connections
     Task.create_task(task_params)
   end
 
-  
+  # creates a new task after deal created
+  # args requires :creator, :assignee, :lead, :deal, :description
+  def self.create_ps_signing_task(args)
+    task_params = args.
+      slice(
+        :creator,
+        :assignee,
+        :lead,
+        :deal).
+      merge(
+        name: 'Sign P&S',
+        description: args[:description],
+        task_priority_id: 2,
+        task_status_id: 1)
+    Task.create_task(task_params)
+  end
 end
