@@ -41,7 +41,6 @@ class ConnectionsTest < ActiveSupport::TestCase
 
     @deal.current_stage_id = 5
     @deal.save
-    @deal.reload    
 
     @deal.events.each do |event|
       event.reload

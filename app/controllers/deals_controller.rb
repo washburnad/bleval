@@ -13,8 +13,6 @@ class DealsController < ApplicationController
 
   def create
     @deal = Deal.create deal_params
-    puts deal_params
-    puts @deal
     if @deal.valid?
       redirect_to deal_path @deal
     else
@@ -49,9 +47,5 @@ class DealsController < ApplicationController
         :property_id,
         :ps_date,
         :proj_closing_date)
-  end
-
-  def update_deal_connections
-
   end
 end
